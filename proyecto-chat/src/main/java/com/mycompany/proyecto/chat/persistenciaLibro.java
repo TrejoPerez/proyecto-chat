@@ -35,7 +35,7 @@ public class persistenciaLibro {
       
         return lib;
     }
-    public void guardarLibro(libro l )throws Exception{
+    public static void guardarLibro(libro l )throws Exception{
         ArrayList<libro> lib = new ArrayList<>();
         File f = new File(RUTA);
         if(f.exists()) lib = leerLibro();

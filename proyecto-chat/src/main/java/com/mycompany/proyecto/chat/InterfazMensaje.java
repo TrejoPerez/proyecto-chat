@@ -6,6 +6,8 @@
 package com.mycompany.proyecto.chat;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -17,6 +19,7 @@ public class InterfazMensaje extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    
     public InterfazMensaje() {
         initComponents();
         persistenciaLibro pes = new persistenciaLibro();
@@ -25,16 +28,18 @@ public class InterfazMensaje extends javax.swing.JFrame {
             public void run() {
                 String p="";
                 int i=0;
-                ArrayList<libro> libs = pes.leerLibro();
-                while(true){
+                while(i<=persistenciaLibro.leerLibro().size()){
                     if(i==persistenciaLibro.leerLibro().size()){
-                        TextAreaLeerLibro.setText(p);                        
+                        TextAreaLeerLibro.setText(p);   
+                        TextAreaEnvariMensaje.setText(p);
+                        Thread.interrupted();
                     }else if(i<=persistenciaLibro.leerLibro().size()){
                         p = p+persistenciaLibro.leerLibro().get(i).getMensaje()+"\n";
+                        System.out.println(p);
                         i = i+1;
                     }
                     try {
-                        Thread.sleep(1000);
+                        //Thread.sleep(1000);
                     } catch (Exception ex) {
 
                     }
@@ -43,6 +48,7 @@ public class InterfazMensaje extends javax.swing.JFrame {
             }
         });
         t1.start();
+        
     }
 
     /**
@@ -54,7 +60,7 @@ public class InterfazMensaje extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        LabelRespuesta = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextAreaLeerLibro = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -62,6 +68,7 @@ public class InterfazMensaje extends javax.swing.JFrame {
         btnEnviarMensaje = new javax.swing.JButton();
         labelEstadoMensaje = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,39 +96,49 @@ public class InterfazMensaje extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        jLabel1.setText("Sin estado");
+
+        javax.swing.GroupLayout LabelRespuestaLayout = new javax.swing.GroupLayout(LabelRespuesta);
+        LabelRespuesta.setLayout(LabelRespuestaLayout);
+        LabelRespuestaLayout.setHorizontalGroup(
+            LabelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LabelRespuestaLayout.createSequentialGroup()
+                .addGroup(LabelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LabelRespuestaLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(LabelRespuestaLayout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(btnEnviarMensaje)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(78, 78, 78))
-                    .addComponent(labelEstadoMensaje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LabelRespuestaLayout.createSequentialGroup()
+                        .addComponent(labelEstadoMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        LabelRespuestaLayout.setVerticalGroup(
+            LabelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LabelRespuestaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(LabelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(LabelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEnviarMensaje)
                     .addComponent(jButton1))
-                .addGap(52, 52, 52)
-                .addComponent(labelEstadoMensaje)
+                .addGroup(LabelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LabelRespuestaLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(labelEstadoMensaje))
+                    .addGroup(LabelRespuestaLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel1)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -130,12 +147,12 @@ public class InterfazMensaje extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LabelRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(LabelRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -147,8 +164,13 @@ public class InterfazMensaje extends javax.swing.JFrame {
         librito.setMensaje(TextAreaEnvariMensaje.getText());
         persistenciaLibro pes = new persistenciaLibro();
         try {
+            String p="";
             pes.guardarLibro(librito);
             labelEstadoMensaje.setText("Mensaje Enviado");
+            for(int i=0;i<persistenciaLibro.leerLibro().size();i++){
+                p=p+persistenciaLibro.leerLibro().get(i).getMensaje()+"\n";
+            }
+            TextAreaLeerLibro.setText(p);
         } catch (Exception ex) {
             labelEstadoMensaje.setText("Erro al enviar el mensaje" + ex.getMessage());
         }
@@ -158,7 +180,14 @@ public class InterfazMensaje extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //TextAreaLeerLibro.setText(persistenciaLibro.leerLibro().toString());
-        
+        libro librito = new libro();
+        librito.setMensaje(TextAreaLeerLibro.getText());
+        try {
+            persistenciaLibro.guardarLibro(librito);
+            labelEstadoMensaje.setText("Haz respondido el mensaje");
+        } catch (Exception ex) {
+            System.out.println("Error al responder el mensaje" + ex.getMessage());
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -199,11 +228,12 @@ public class InterfazMensaje extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel LabelRespuesta;
     private javax.swing.JTextArea TextAreaEnvariMensaje;
     private javax.swing.JTextArea TextAreaLeerLibro;
     private javax.swing.JButton btnEnviarMensaje;
     private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelEstadoMensaje;
