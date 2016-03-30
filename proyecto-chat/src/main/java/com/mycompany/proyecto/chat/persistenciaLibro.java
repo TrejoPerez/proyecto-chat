@@ -45,4 +45,12 @@ public class persistenciaLibro {
         oos.writeObject(lib);
         System.out.println("Guardado con exito");
     }
+    public static Integer generarId(){
+        Integer id=null;
+        libro libro = new libro();
+        ArrayList<libro> arrLibro = leerLibro();
+        libro.setId((arrLibro.size()-1));
+        id = libro.getId();
+        return id;
+    }
 }

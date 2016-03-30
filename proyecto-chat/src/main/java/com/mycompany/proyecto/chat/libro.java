@@ -13,7 +13,15 @@ import java.io.Serializable;
  */
 public class libro implements Serializable{
     private String mensaje;
+    private Integer id;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getMensaje() {
         return mensaje;
     }

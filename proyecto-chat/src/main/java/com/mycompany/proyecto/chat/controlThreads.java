@@ -49,23 +49,31 @@ public class controlThreads {
         return asigna;
     }
     */
-    public synchronized void thread1(String na){
-        for(int i=0;i<=8;i++){
-            System.out.println(i+ na);
-        }
-    }
+    
     
     public static void main(String[] args) throws InterruptedException {
-       controlThreads c = new controlThreads();
-       c.thread1("t1");
-       controlThreads c2 = new controlThreads();
-       c2.thread1("t2");
-        System.out.println("Terminado");
+        getThread().start();
+        //getThread().suspend();
+        
     }
     
-    
+    public static Thread getThread(){
+        Thread t1 = new Thread(new Runnable() {
+            int i=0;
+            @Override
+            public void run() {
+                while(i<3){
+                    System.out.println("Soy el thread");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(controlThreads.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                i +=1;
+                }
+            }
+        });
+        return t1;
+    }
 }
-class lp{
-    
-    
-}
+
