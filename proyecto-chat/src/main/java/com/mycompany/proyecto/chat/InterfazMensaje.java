@@ -188,6 +188,7 @@ public class InterfazMensaje extends javax.swing.JFrame {
                 p=p+persistenciaLibro.leerLibro().get(i).getMensaje()+"\n";
             }
             TextAreaLeerLibro.setText(p);
+            
             TextAreaEnvariMensaje.setText(p);
             
         } catch (Exception ex) {
